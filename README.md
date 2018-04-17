@@ -129,9 +129,14 @@ At the time of this writing VBox 5.2 was the latest stable version.  Your's coul
 ```
 apt-get install virtualbox-5.2
 ```
+or 
+```
+apt-get install virtualbox
+```
 With it installed you need to get group access to it to use it properly.
 So add your useranem and root to it's group.  
-You can check VBox's status too.
+You can check VBox's status too.  "Usermod" command might not work.
+Running as root work well enough
 ```
 usermod -aG vboxusers <username>
 systemctl status vboxdrv
@@ -160,4 +165,21 @@ minikube start --vm-driver=virtualbox
 
 ## Using Minikube 
 
+A start program for MiniKube:
+See if all of the installing worked.
+```
+kubectl run hello-minikube --image=k8s.gcr.io/echoserver:1.4 --port=8080
+```
+Open it up to the outside
+```
+kubectl expose deployment hello-minikube --type=NodePort
+```
+Pull the IP address of the cluster
+```
+curl $(minikube service hello-minikube --url)
+```
 
+
+
+ 
+ 
